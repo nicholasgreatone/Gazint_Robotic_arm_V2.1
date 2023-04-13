@@ -1,0 +1,57 @@
+#include <Servo.h>
+
+// Define the servo pins
+int servo1Pin = 9;
+int servo2Pin = 10;
+int servo3Pin = 11;
+int servo4Pin = 6;
+int servo5Pin = 5;
+
+// Define the potentiometer pins
+int pot1Pin = A0;
+int pot2Pin = A1;
+int pot3Pin = A2;
+int pot4Pin = A3;
+int pot5Pin = A4;
+
+// Create servo objects
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+Servo servo5;
+
+void setup() {
+  // Attach servos to pins
+  servo1.attach(servo1Pin);
+  servo2.attach(servo2Pin);
+  servo3.attach(servo3Pin);
+  servo4.attach(servo4Pin);
+  servo5.attach(servo5Pin);
+}
+
+void loop() {
+  // Read potentiometer values
+  int pot1Value = analogRead(pot1Pin);
+  int pot2Value = analogRead(pot2Pin);
+  int pot3Value = analogRead(pot3Pin);
+  int pot4Value = analogRead(pot4Pin);
+  int pot5Value = analogRead(pot5Pin);
+
+  // Map potentiometer values to servo angles
+  int servo1Angle = map(pot1Value, 0, 1023, 0, 180);
+  int servo2Angle = map(pot2Value, 0, 1023, 0, 180);
+  int servo3Angle = map(pot3Value, 0, 1023, 0, 180);
+  int servo4Angle = map(pot4Value, 0, 1023, 0, 180);
+  int servo5Angle = map(pot5Value, 0, 1023, 0, 180);
+
+  // Set servo angles
+  servo1.write(servo1Angle);
+  servo2.write(servo2Angle);
+  servo3.write(servo3Angle);
+  servo4.write(servo4Angle);
+  servo5.write(servo5Angle);
+
+  // Wait for servos to reach their target position
+  delay(05);
+}
